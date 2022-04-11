@@ -65,13 +65,15 @@ function App() {
           renderLeaf={renderLeaf}
           placeholder="Enter some text..."
           onDOMBeforeInput={(event: InputEvent) => {
-            event.preventDefault();
             switch (event.inputType) {
               case "formatBold":
+                event.preventDefault();
                 return toggleFormat(editor, "bold");
               case "formatItalic":
+                event.preventDefault();
                 return toggleFormat(editor, "italic");
               case "formatUnderline":
+                event.preventDefault();
                 return toggleFormat(editor, "underlined");
             }
           }}
