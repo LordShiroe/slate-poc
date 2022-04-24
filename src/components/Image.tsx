@@ -35,7 +35,6 @@ const FloatingButton = styled(Button)`
 export const Image = ({ attributes, children, element }: Props) => {
   const editor = useSlateStatic();
   const path = ReactEditor.findPath(editor, element);
-
   const selected = useSelected();
   const focused = useFocused();
   return (
@@ -46,7 +45,7 @@ export const Image = ({ attributes, children, element }: Props) => {
         <FloatingButton
           active
           reversed={false}
-          onClick={() => Transforms.removeNodes(editor, { at: path })}
+          onMouseDown={() => Transforms.removeNodes(editor, { at: path })}
           selected={selected}
           focused={focused}
         >

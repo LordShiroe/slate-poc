@@ -11,12 +11,14 @@ import { HoveringToolbar } from "./components/FloatingToolbar";
 import { InsertImageButton } from "./components/InsertImageButton";
 import { Leaf } from "./components/Leaf";
 import { Toolbar } from "./components/Toolbar";
+import { ELEMENT_TYPE } from "./types/ELEMENT_TYPE";
 import { toggleFormat } from "./utils/format";
 import { withImages } from "./utils/image";
+import { withLink } from "./utils/link";
 
 const initialValue: Descendant[] = [
   {
-    type: "paragraph",
+    type: ELEMENT_TYPE.PARAGRAPH,
     children: [
       {
         text: "This example shows how you can make a hovering menu appear above your content, which you can use to make text ",
@@ -24,16 +26,21 @@ const initialValue: Descendant[] = [
       { text: "bold", bold: true },
       { text: ", " },
       { text: "italic", italic: true },
-      { text: ", or anything else you might want to do!" },
+      { text: ", or anything else you might want to do! " },
+      {
+        type: ELEMENT_TYPE.LINK,
+        url: "https://en.wikipedia.org/wiki/Hypertext",
+        children: [{ text: "hyperlink" }],
+      },
     ],
   },
   {
-    type: "image",
+    type: ELEMENT_TYPE.IMAGE,
     url: "https://source.unsplash.com/kFrdX5IeQzI",
     children: [{ text: "" }],
   },
   {
-    type: "paragraph",
+    type: ELEMENT_TYPE.PARAGRAPH,
     children: [
       { text: "Try it out yourself! Just " },
       { text: "select any piece of text and the menu will appear", bold: true },
@@ -50,7 +57,7 @@ const Container = styled.div`
 `;
 
 function App() {
-  const editor = useMemo(() => withImages(withHistory(withReact(createEditor()))), []);
+  const editor = useMemo(() => withLink(withImages(withHistory(withReact(createEditor())))), []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const renderElement = useCallback((props) => <Element {...props} />, []);
   return (

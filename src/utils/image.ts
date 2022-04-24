@@ -1,5 +1,6 @@
 import { Editor, Transforms } from "slate";
 import { ImageElement } from "../types";
+import { ELEMENT_TYPE } from "../types/ELEMENT_TYPE";
 import imageExtensions from "image-extensions";
 import isUrl from "is-url";
 
@@ -40,7 +41,7 @@ export const withImages = (editor: Editor) => {
 
 export const insertImage = (editor: Editor, url: string) => {
   const text = { text: "" };
-  const image: ImageElement = { type: "image", url, children: [text] };
+  const image: ImageElement = { type: ELEMENT_TYPE.IMAGE, url, children: [text] };
   Transforms.insertNodes(editor, image);
 };
 

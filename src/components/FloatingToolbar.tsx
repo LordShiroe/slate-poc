@@ -7,6 +7,7 @@ import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatItalicIcon from "@mui/icons-material/FormatItalic";
 import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
 import { FormatButton } from "./FormatButton";
+import { InsertLinkButton, RemoveLinkButton } from "./InsertLinkButton";
 
 const Menu = styled.div`
   padding: 8px 7px 6px;
@@ -60,6 +61,8 @@ export const HoveringToolbar = () => {
       <FormatButton format="bold" Icon={FormatBoldIcon} />
       <FormatButton format="italic" Icon={FormatItalicIcon} />
       <FormatButton format="underlined" Icon={FormatUnderlinedIcon} />
+      <InsertLinkButton />
+      <RemoveLinkButton />
     </Menu>,
     document.body
   );
