@@ -2,6 +2,7 @@ import { HTMLAttributes, ReactChild } from "react";
 import { Element as SlateElement } from "slate";
 import { CustomLink, ImageElement } from "../types";
 import { ELEMENT_TYPE } from "../types/ELEMENT_TYPE";
+import { EditableButton } from "./EditableButton";
 import { Image } from "./Image";
 import { Link } from "./Link";
 
@@ -18,6 +19,8 @@ export const Element = (props: Props) => {
       return <Image {...props} element={element as ImageElement} />;
     case ELEMENT_TYPE.LINK:
       return <Link {...props} element={element as CustomLink} />;
+    case ELEMENT_TYPE.BUTTON:
+      return <EditableButton {...props} />;
     default:
       return <p {...attributes}>{children}</p>;
   }
