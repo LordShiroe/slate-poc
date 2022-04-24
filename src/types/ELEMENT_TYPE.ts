@@ -3,4 +3,6 @@ export enum ELEMENT_TYPE {
   BUTTON = "button",
   IMAGE = "image",
   PARAGRAPH = "paragraph",
+  COLUMN_GROUP = "column_group",
+  COLUMN_ELEMENT = "column_element",
 }

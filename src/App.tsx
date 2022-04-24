@@ -11,9 +11,11 @@ import { Element } from "./components/Element";
 import { HoveringToolbar } from "./components/FloatingToolbar";
 import { ToggleEditableButtonButton } from "./components/InsertButtonButton";
 import { InsertImageButton } from "./components/InsertImageButton";
+import { InsertImageTextGroup } from "./components/InsertImageTextGroup";
 import { Leaf } from "./components/Leaf";
 import { Toolbar } from "./components/Toolbar";
 import { ELEMENT_TYPE } from "./types/ELEMENT_TYPE";
+import { withColumns } from "./utils/column";
 import { toggleFormat } from "./utils/format";
 import { withImages } from "./utils/image";
 import { withLink } from "./utils/link";
@@ -49,6 +51,37 @@ const initialValue: Descendant[] = [
       { text: "." },
     ],
   },
+  {
+    type: ELEMENT_TYPE.COLUMN_GROUP,
+    children: [
+      {
+        type: ELEMENT_TYPE.COLUMN_ELEMENT,
+        position: "left",
+        children: [
+          {
+            type: ELEMENT_TYPE.PARAGRAPH,
+            children: [{ text: "This is a column" }],
+          },
+        ],
+      },
+      {
+        type: ELEMENT_TYPE.COLUMN_ELEMENT,
+        position: "right",
+        children: [
+          {
+            type: ELEMENT_TYPE.PARAGRAPH,
+            children: [
+              {
+                type: ELEMENT_TYPE.IMAGE,
+                url: "https://via.placeholder.com/150",
+                children: [{ text: "" }],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const Container = styled.div`
@@ -59,7 +92,7 @@ const Container = styled.div`
 `;
 
 function App() {
-  const editor = useMemo(() => withLink(withImages(withHistory(withReact(createEditor())))), []);
+  const editor = useMemo(() => withColumns(withLink(withImages(withHistory(withReact(createEditor()))))), []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const renderElement = useCallback((props) => <Element {...props} />, []);
 
@@ -93,6 +126,7 @@ function App() {
         <Toolbar>
           <InsertImageButton />
           <ToggleEditableButtonButton />
+          <InsertImageTextGroup />
         </Toolbar>
         <HoveringToolbar />
         <Editable

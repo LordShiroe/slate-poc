@@ -1,8 +1,9 @@
 import { HTMLAttributes, ReactChild } from "react";
 import { Element as SlateElement } from "slate";
-import { CustomLink, ImageElement } from "../types";
+import { ColumnGroupElement, CustomLink, ImageElement } from "../types";
 import { ELEMENT_TYPE } from "../types/ELEMENT_TYPE";
 import { EditableButton } from "./EditableButton";
+import { Group } from "./Group";
 import { Image } from "./Image";
 import { Link } from "./Link";
 
@@ -21,6 +22,8 @@ export const Element = (props: Props) => {
       return <Link {...props} element={element as CustomLink} />;
     case ELEMENT_TYPE.BUTTON:
       return <EditableButton {...props} />;
+    case ELEMENT_TYPE.COLUMN_GROUP:
+      return <Group {...props} element={element as ColumnGroupElement} />;
     default:
       return <p {...attributes}>{children}</p>;
   }
