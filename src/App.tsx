@@ -85,12 +85,21 @@ const initialValue: Descendant[] = [
 ];
 
 const Container = styled.div`
-  margin: 10rem;
+  margin: 10vw;
   padding: 0.5rem;
   border: 1px solid black;
   border-radius: 0.5rem;
+  moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
 `;
 
+// disable the context menu so android shows the toolbar
+window.oncontextmenu = function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  return false;
+};
 function App() {
   const editor = useMemo(() => withColumns(withLink(withImages(withHistory(withReact(createEditor()))))), []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
